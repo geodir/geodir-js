@@ -1,0 +1,2 @@
+# geodir-js
+GeodirJS
