@@ -22,7 +22,7 @@ You can then use it like this:
   window.onload = function() {
 
     var geodir = new GeodirAPI.Routing({
-      key: "[Sign-up for free and get your own key: https://www.graphhopper.com/products/]",
+      key: "[Sign-up for free and get your own key:  https://www.geodir.co/]",
       vehicle: "car",
       elevation: false
     });
