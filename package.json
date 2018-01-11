@@ -1,0 +1,49 @@
+{
+  "name": "@geodir/geodir-js",
+  "version": "0.1.2",
+  "description": "Geodir Base",
+  "main": "src/GeodirAPI.js",
+  "scripts": {
+    "watch": "watchify src/GeodirAPI.js -o dist/geodir-js.js --debug --verbose",
+    "bundle": "browserify src/GeodirAPI.js -o dist/geodir-js.js",
+    "bundleDebug": "browserify src/GeodirAPI.js --debug -o dist/geodir-js.js",
+    "bundleProduction": "browserify -g uglifyify src/GeodirAPI.js | derequire > dist/geodir-js.js",
+    "test": "JASMINE_CONFIG_PATH=spec/jasmine.json jasmine"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-swap"
+    ]
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "superagent": "^3.6.3",
+    "es6-promise": "^4.0.5",
+    "rest": "^2.0.0"
+  },
+  "devDependencies": {
+    "browserify": "14.4.0",
+    "browserify-swap": "0.2.2",
+    "derequire": "^2.0.6",
+    "jasmine": "^2.8.0",
+    "jshint": "2.9.5",
+    "uglifyify": "3.0.4",
+    "watchify": "3.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geodir/geodir-js.git"
+  },
+  "keywords": [
+    "geodir",
+    "javascript",
+    "geodir",
+    "service"
+  ],
+  "author": "Danilo Nicolas Mendoza Ricaldi <nmendozaricaldi@gmail.com> (https://nmendozaricaldi.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geodir/geodir-js/issues"
+  },
+  "homepage": "https://github.com/geodir/geodir-js#readme"
+}

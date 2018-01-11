@@ -1,0 +1,1 @@
+module.exports.DEFAULT_ENDPOINT = 'http://security.geodir.co';
