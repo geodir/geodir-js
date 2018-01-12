@@ -7,7 +7,6 @@ describe("Simple Route", function () {
         routing.clearPoints();
         routing.addPoint(new GRInput("-11.981562,-77.11853"));
         routing.addPoint(new GRInput("-12.085149,-77.00592"));
-
         routing.doRequest()
             .then(function (json) {
                 expect(json.paths.length).toBeGreaterThan(0);
