@@ -52,7 +52,7 @@ GeodirBuilder.prototype.getLayersByMap = function (map,reqArgs) {
     return that.doRequest(url,reqArgs);
 };
 
-GeodirBuilder.prototype.getInfoLayer = function (team, map, idLayer, reqArgs){
+GeodirBuilder.prototype.getInfoLayer = function (team,map,idLayer,reqArgs){
     var that = this;
     var args = ghUtil.clone(that);
     var url = args.host + args.basePath+'/'+team+'/'+map+'/'+idLayer+'/info-layer';
