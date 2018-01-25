@@ -26,4 +26,15 @@ describe("Builder Test", function () {
             })
         ;
     });
+
+    it("Info Layer", function(done){
+        builder.getInfoLayer('finantialteamjhonnysv1gmailcom','qltWww69', 1, {})
+            then(function(json){
+                expect(json.length).toBeGreaterThan(0);
+                done();
+            })
+            .catch(function (json) {
+                done.fail("Shouldn't fail"+json);
+            })
+    });
 });
