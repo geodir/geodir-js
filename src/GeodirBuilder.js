@@ -8,7 +8,7 @@ var _geo = new Geodir();
 
 GeodirBuilder = function (args) {
 
-    this.host = "http://builder.geodir.co/builder.api";
+    this.host = "https://geoserver.geodir.co/builder.api";
     this.basePath = '/services';
     ghUtil.copyProperties(args, this);
 
