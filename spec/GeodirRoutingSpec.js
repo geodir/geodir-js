@@ -1,12 +1,13 @@
 var GeodirRouting = require('../src/GeodirRouting');
 var GRInput = require('../src/GRInput');
-var routing = new GeodirRouting({elevation: false,host : "http://localhost:5555/api/v1"});
+var routing = new GeodirRouting({elevation: false,host : "http://localhost:8083"});
 
 describe("Simple Route", function () {
     it("Get results", function (done) {
         routing.clearPoints();
-        routing.addPoint(new GRInput("-11.981562,-77.11853"));
-        routing.addPoint(new GRInput("-12.085149,-77.00592"));
+        routing.addPoint(new GRInput("-11.981562,-77.11853"),0);
+        routing.addPoint(new GRInput("-12.085149,-77.00592"),1);
+        
         routing.doRequest()
             .then(function (json) {
                 expect(json.paths.length).toBeGreaterThan(0);
@@ -21,11 +22,13 @@ describe("Simple Route", function () {
             .catch(function (err) {
                 done.fail(err.message);
             });
+        var puntos = routing.createURL();
+        console.log(puntos);
     });
     it("Compare Fastest vs. Shortest", function (done) {
         routing.clearPoints();
-        routing.addPoint(new GRInput("-11.981562,-77.11853"));
-        routing.addPoint(new GRInput("-12.085149,-77.00592"));
+        routing.addPoint(new GRInput("-11.981562,-77.11853"),0);
+        routing.addPoint(new GRInput("-12.085149,-77.00592"),1);
 
         routing.doRequest()
             .then(function (json) {

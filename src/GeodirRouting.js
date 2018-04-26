@@ -10,11 +10,12 @@ var _geo = new Geodir();
 
 GeodirRouting = function (args) {
     this.do_zoom = true;
+    this.locale = 'en';
     this.points = new GRRoute(new GRInput(), new GRInput());
     this.route = new GRRoute(new GRInput(), new GRInput());
     this.from = this.route.first();
     this.to = this.route.last();
-    this.host = "http://maps.geodir.co:8080/api/v1";
+    this.host = "http://api.geodir.co/api/v1/route";
     this.debug = false;
     this.data_type = 'application/json';
     this.points_encoded = true;
@@ -183,10 +184,12 @@ GeodirRouting.prototype.isPublicTransit = function () {
 
 GeodirRouting.prototype.clearPoints = function () {
     this.points.length = 0;
+    //addAll()
 };
 
-GeodirRouting.prototype.addPoint = function (latlon) {
+GeodirRouting.prototype.addPoint = function (latlon,to) {
     this.points.push(latlon);
+    this.route.add(latlon,to);
 };
 GeodirRouting.prototype.createPointParams = function (useRawInput) {
     var str = "", point, i, l;
@@ -206,7 +209,7 @@ GeodirRouting.prototype.createPointParams = function (useRawInput) {
 };
 
 GeodirRouting.prototype.createURL = function () {
-    return this.createPath(this.host + "/route?" + this.createPointParams(false) + "&type=" + this.dataType);
+    return this.createPath(this.host + "?" + this.createPointParams(false) + "&type=" + this.dataType);
 };
 
 GeodirRouting.prototype.createHistoryURL = function () {
@@ -378,10 +381,9 @@ GeodirRouting.prototype.i18n = function (reqArgs) {
 
     return new Promise(function (resolve, reject) {
         var args = grUtil.clone(that);
-        if (!reqArgs)
-            reqArgs = 'es';
-        var url = args.host + "/i18n/" + reqArgs + "?" + "key=" + args.key;
-
+        if (reqArgs)
+            args = grUtil.copyProperties(reqArgs, args);
+        var url = args.host + "/i18n/" + args.locale + "?" + "key=" + args.key;
         request
             .get(url)
             .accept(args.data_type)

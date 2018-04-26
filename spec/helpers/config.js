@@ -1,4 +1,3 @@
-// Sign-up for free and get your own key: https://graphhopper.com/#directions-api
 var GeodirAPI = require('../../src/Geodir');
 var _geo = new Geodir();
 _geo.setAccessToken('a049e19d-c241-41f6-95b6-669166cbea7b');
