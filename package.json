@@ -1,6 +1,6 @@
 {
   "name": "@geodir/geodir-js",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Geodir Base",
   "main": "src/GeodirAPI.js",
   "scripts": {
