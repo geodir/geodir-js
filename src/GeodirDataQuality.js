@@ -45,4 +45,29 @@ GeodirDataQuality.prototype.doRequest = function (reqArgs) {
     });
 };
 
+GeodirDataQuality.prototype.batch = function (reqArgs) {
+    var that = this;
+
+    return new Promise(function(resolve, reject) {
+        var args = ghUtil.clone(that);
+        if (reqArgs)
+            args = ghUtil.copyProperties(reqArgs, args);
+
+        var url = args.host + "/batch?&access_token=" + args.key;
+
+        request
+            .post(url)
+            .send(args.polygon)
+            .accept('application/json')
+            .timeout(args.timeout)
+            .end(function (err, res) {
+                if (err || !res.ok) {
+                    reject(ghUtil.extractError(res, url));
+                } else if (res) {
+                    resolve(res.body);
+                }
+            });
+    });
+};
+
 module.exports = GeodirDataQuality;
