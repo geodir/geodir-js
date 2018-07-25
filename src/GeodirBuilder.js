@@ -51,6 +51,13 @@ GeodirBuilder.prototype.getLayersByMap = function (map) {
     return that.doRequest(url,{});
 };
 
+GeodirBuilder.prototype.getMapConfig = function (map) {
+    var that = this;
+    var args = ghUtil.clone(that);
+    var url = args.host +'/map/'+map+'/config';
+    return that.doRequest(url,{});
+};
+
 GeodirBuilder.prototype.doRequest = function (url,reqArgs) {
     var that = this;
     return new Promise(function(resolve, reject) {

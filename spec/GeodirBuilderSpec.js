@@ -53,4 +53,15 @@ describe("Builder Test", function () {
                 done.fail("Shouldn't fail"+json);
             })
     });
+    it("Map Config", function(done){
+        builder.getMapConfig('zhKTXt5')
+            .then(function(json){
+                expect(json.zoom).toBeGreaterThan(0);
+                done();
+            })
+            .catch(function (json) {
+                done.fail("Shouldn't fail"+json);
+            })
+    })
+    
 });
