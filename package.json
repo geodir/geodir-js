@@ -1,6 +1,6 @@
 {
   "name": "@geodir/geodir-js",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Geodir Base",
   "main": "src/GeodirAPI.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "bundle": "browserify src/GeodirAPI.js -o dist/geodir-js.js",
     "bundleDebug": "browserify src/GeodirAPI.js --debug -o dist/geodir-js.js",
     "bundleProduction": "browserify -g uglifyify src/GeodirAPI.js | derequire > dist/geodir-js.js",
-    "test": "JASMINE_CONFIG_PATH=spec/support/jasmine.json jasmine"
+    "test": "jasmine JASMINE_CONFIG_PATH=spec/support/jasmine.json"
   },
   "browserify": {
     "transform": [

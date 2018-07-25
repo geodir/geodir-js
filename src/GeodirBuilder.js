@@ -9,7 +9,6 @@ var _geo = new Geodir();
 GeodirBuilder = function (args) {
 
     this.host = "https://geoserver.geodir.co/builder.api";
-    this.basePath = '/services';
     ghUtil.copyProperties(args, this);
 
 };
@@ -24,40 +23,33 @@ GeodirBuilder.prototype.getParametersAsQueryString = function (args) {
 /**
  * List of teams
  */
-GeodirBuilder.prototype.getTeams = function (reqArgs) {
+GeodirBuilder.prototype.getTeams = function () {
     var that = this;
     var args = ghUtil.clone(that);
-    var url = args.host + args.basePath+'/teams';
-    return that.doRequest(url,reqArgs);
+    var url = args.host + '/team/all';
+    return that.doRequest(url,{});
 };
 
-GeodirBuilder.prototype.getLayersByTeam = function (team,reqArgs) {
+GeodirBuilder.prototype.getLayersByTeam = function (team) {
     var that = this;
     var args = ghUtil.clone(that);
-    var url = args.host + args.basePath+'/'+team+'/layers-team';
-    return that.doRequest(url,reqArgs);
+    var url = args.host +'/team/'+team+'/layers';
+    return that.doRequest(url,{});
 };
 
-GeodirBuilder.prototype.getMapsbyTeam = function (team,reqArgs) {
+GeodirBuilder.prototype.getMapsbyTeam = function (team) {
     var that = this;
     var args = ghUtil.clone(that);
-    var url = args.host + args.basePath+'/'+team+'/maps-team';
-    return that.doRequest(url,reqArgs);
+    var url = args.host +'/team/'+team+'/maps';
+    return that.doRequest(url,{});
 };
 
-GeodirBuilder.prototype.getLayersByMap = function (map,reqArgs) {
+GeodirBuilder.prototype.getLayersByMap = function (map) {
     var that = this;
     var args = ghUtil.clone(that);
-    var url = args.host + args.basePath+'/'+map+'/layers-map';
-    return that.doRequest(url,reqArgs);
+    var url = args.host +'/map/'+map+'/layers';
+    return that.doRequest(url,{});
 };
-
-GeodirBuilder.prototype.getInfoLayer = function (team,map,idLayer,reqArgs){
-    var that = this;
-    var args = ghUtil.clone(that);
-    var url = args.host + args.basePath+'/'+team+'/'+map+'/'+idLayer+'/info-layer';
-    return that.doRequest(url,reqArgs);
-}
 
 GeodirBuilder.prototype.doRequest = function (url,reqArgs) {
     var that = this;
@@ -66,8 +58,7 @@ GeodirBuilder.prototype.doRequest = function (url,reqArgs) {
         if (reqArgs)
             args = ghUtil.copyProperties(reqArgs, args);
 
-        var _url = url + "?" + that.getParametersAsQueryString(args) + "&key=" + args.key;
-
+        var _url = url + "?" + that.getParametersAsQueryString(args) + "&access_token=" + args.key;
         request
             .get(_url)
             .set('Authorization', 'Bearer '+_geo.getAccessToken())
